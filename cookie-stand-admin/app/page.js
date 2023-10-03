@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
+    <main>
     <div className="bg-green-500 p-6 mb-12 mt-12">
       <form className="max-w-md mx-auto">
         <FormField label="Location" id="location" placeholder="Enter Location" />
@@ -27,6 +28,7 @@ export default function Home() {
         <SubmitButton />
       </form>
     </div>
+    </main>
   );
 }
 
