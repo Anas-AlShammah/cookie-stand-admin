@@ -1,7 +1,10 @@
-"use client"
+'use client'
+import Link from "next/link";
+
 import Image from 'next/image';
 import React, { useState } from 'react';
-
+import useSWR, {mutate} from 'swr';
+import CityList from './cookie/CityList';
 export default function Home() {
   const [formData, setFormData] = useState({
     location: '',
@@ -30,7 +33,7 @@ export default function Home() {
         },
         body: JSON.stringify(formData),
       });
-
+      mutate("https://salmon20231005130044.azurewebsites.net/api/Cookiestand");
       if (response.ok) {
         // Request was successful, you can handle the response here
         console.log('POST request was successful');
@@ -46,7 +49,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className="bg-green-500 p-6 mb-12 mt-12">
+      <div className="bg-green-500 p-6 mb-12 mt-12 text-black">
         <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
           <FormField label="Location" id="location" placeholder="Enter Location" onChange={handleChange} />
           <FormField label="Description" id="description" placeholder="Enter Description" onChange={handleChange} />
@@ -74,6 +77,10 @@ export default function Home() {
           <SubmitButton />
         </form>
       </div>
+      <div className="flex justify-center"> {/* Center align the Link */}
+    <Link href={`/cookie`} className="text-blue-500">See all</Link>
+  </div>
+      {/* <CityList /> */}
     </main>
   );
 }
